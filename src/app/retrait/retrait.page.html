@@ -1,0 +1,138 @@
+
+<ion-content>
+  <ion-grid class="grille">
+    <ion-row>
+      <ion-col offset="1">
+        <div routerLink="/acceuil">
+          <ion-icon name="home-outline" style="color: #07AEEF" ></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col offset="1">
+        <div class="logo">
+          <ion-thumbnail>
+            <img src="/assets/logo.png">
+          </ion-thumbnail>
+        </div>
+      </ion-col>
+      <ion-col offset="2">
+        <div class="avatar" >
+          <ion-avatar><img src="/assets/body.jpeg" hidden="true"> </ion-avatar>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" offset="3" style="margin-top: 2%">
+        <ion-item style="border-bottom: solid 3px #07AEEF ">
+          <ion-icon name="return-up-back-outline"  style="color: #07AEEF; margin-right: 2px;"></ion-icon>
+          <ion-label style="font-size: 15px">Retrait</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <form [formGroup]="codeEntry" >
+  <ion-row>
+    <ion-col size="10" offset="1">
+      <ion-item>
+        <ion-label position="floating" style="font-size: 12px; margin-bottom: 10px;" >Code Transaction</ion-label>
+        <ion-input type="text" placeholder="Entrez le code de transaction" formControlName="code" required (keyup)="searchDepot()"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  </form>
+  <div [hidden]="!this.codeEntry.valid">
+  <ion-segment
+    value="all"
+    [(ngModel)]="segmentModel"
+     style="background-color: whitesmoke"   >
+
+    <ion-segment-button value="beneficiaire">
+     Béneficiaire
+    </ion-segment-button>
+
+    <ion-segment-button value="emetteur">
+      Emetteur
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="segmentModel === 'beneficiaire'" >
+    <form [formGroup]="cniEntry">
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="floating" style="font-size: 12px;">N°CNI</ion-label>
+          <ion-input type="text" formControlName="cni" required ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    </form>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="stacked" style="font-size: 12px;">Nom & Prenom</ion-label>
+          <ion-input type="text"  readonly  >{{customer.nomBeneficiaire}}</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="stacked" style="font-size: 12px;">Montant a Recevoir</ion-label>
+          <ion-input type="text" readonly   >{{transaction.montant}}</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="stacked" style="font-size: 12px;">Date retrait</ion-label>
+          <ion-input type="text" readonly   ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8" offset="2">
+        <ion-button shape="round" size="large" type="submit" expand="block" (click)="basculer()" >Retirer</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div    *ngIf="segmentModel === 'emetteur'" >
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="stacked" style="font-size: 12px;">N°CNI</ion-label>
+          <ion-input type="text" readonly>{{customer.CNI}}</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="stacked" style="font-size: 12px;">Nom & Prenom</ion-label>
+          <ion-input type="text" readonly   >{{customer.nomComplet}}</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="stacked" style="font-size: 12px;">Montant Envoyer</ion-label>
+          <ion-input type="text" readonly   >{{transaction.montant}}</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="stacked" style="font-size: 12px;">Date envoie</ion-label>
+          <ion-input type="text" readonly    >{{transaction.dateDepot|  date:'medium'}}</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8" offset="2">
+        <ion-button shape="round" size="large" type="submit" expand="block" [disabled]="!this.cniEntry.valid" (click)="AlertRetrait()" >Retirer</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  </div>
+
+</ion-content>

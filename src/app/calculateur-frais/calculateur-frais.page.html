@@ -1,0 +1,70 @@
+
+<ion-content [fullscreen]="true">
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule" routerLink="/acceuil">
+        <ion-icon name="home-outline" ></ion-icon>
+
+      </ion-tab-button>
+
+      <ion-tab-button tab="speakers">
+        <ion-icon name="reload-outline"></ion-icon>
+
+      </ion-tab-button>
+
+      <ion-tab-button tab="map">
+        <ion-icon name="map"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab="about">
+        <ion-icon name="calculator-outline"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  <ion-grid class="grille">
+    <ion-row>
+      <ion-col offset="1">
+        <div >
+          <ion-icon name="menu-outline" hidden="true" ></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col offset="1">
+        <div class="logo">
+          <ion-thumbnail>
+            <img src="/assets/logo.png">
+          </ion-thumbnail>
+        </div>
+      </ion-col>
+      <ion-col offset="1">
+        <div class="avatar" >
+          <ion-avatar><img src="/assets/body.jpeg" hidden="true"> </ion-avatar>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8" offset="2" style="margin-top: 5%">
+        <ion-item style="border-bottom: solid 3px #07AEEF ">
+          <ion-icon name="calculator-outline"  style="color: #07AEEF; margin-right: 2px;"></ion-icon>
+          <ion-label style="font-size: 10px">Calculateur de frais</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <form [formGroup]= "CalculeForm" (ngSubmit)="getFrais()" >
+  <div style="margin-top: 10%">
+    <ion-row >
+      <ion-col size="8" offset="1">
+        <ion-item >
+          <ion-label position="floating">Montant</ion-label>
+          <ion-input type="text"   formControlName="montant"  required (keyup)="getVal($event.target.value)"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+     <ion-row>
+       <ion-col size="4" offset="6" >
+         <ion-button expand="block" shape="round" style="font-size: 10px;"  type="submit"  (click)="getFrais()" [disabled]="!CalculeForm.valid" >Calculer</ion-button>
+       </ion-col>
+     </ion-row>
+  </form>
+</ion-content>

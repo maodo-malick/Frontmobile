@@ -1,0 +1,155 @@
+
+
+<ion-content [fullscreen]="true" >
+  <ion-grid class="grille">
+    <ion-row>
+      <ion-col >
+        <div >
+          <ion-icon name="home-outline" style="font-size: 20px; margin-left: 10px; color: #07AEEF; box-shadow: none" routerLink="/acceuil" ></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col offset="1">
+        <div class="logo">
+          <ion-thumbnail>
+            <img src="/assets/logo.png">
+          </ion-thumbnail>
+        </div>
+      </ion-col>
+      <ion-col offset="1" >
+        <div class="avatar" hidden="true">
+          <ion-avatar><img src="/assets/body.jpeg"> </ion-avatar>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" offset="3" >
+        <ion-item style="border-bottom: solid 3px #07AEEF ">
+          <ion-icon name="return-up-forward-outline"  style="color: #07AEEF; margin-right: 5px;"></ion-icon>
+          <ion-label>Dépôt</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+       <div >
+         <ion-segment value="emetteur" [(ngModel)]="segmentModel" >
+           <ion-segment-button value="emetteur">
+            Emetteur
+           </ion-segment-button>
+
+           <ion-segment-button value="beneficiaire">
+              Bénéficiaire
+           </ion-segment-button>
+         </ion-segment>
+       </div>
+
+<form  [formGroup]="transaction" >
+  <div *ngIf="segmentModel === 'emetteur'">
+      <ion-row>
+        <ion-col >
+          <ion-item>
+            <ion-label position="floating" style="font-size: 12px;">N° CNI</ion-label>
+            <ion-input type="text" formControlName ="cni"  required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating" style="font-size: 12px;">Nom Complet</ion-label>
+            <ion-input type="family-name" formControlName ="completName" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+<!--      <ion-row>-->
+<!--        <ion-col>-->
+<!--          <ion-item>-->
+<!--            <ion-label position="floating" style="font-size: 12px;">Prenom</ion-label>-->
+<!--            <ion-input type="name"></ion-input>-->
+<!--          </ion-item>-->
+<!--        </ion-col>-->
+<!--      </ion-row>-->
+
+
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating" style="font-size: 12px;">Téléphone</ion-label>
+            <ion-input type="text" formControlName="telephon" required></ion-input>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating" style="font-size: 12px;" >Montant</ion-label>
+            <ion-input type="number" formControlName="montant" (keyup)="getVal()"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="4" offset="6">
+          <ion-item>
+            <ion-label position="stacked" style="font-size: 12px;">Frais</ion-label>
+            <ion-input type="number" [disabled]="true">{{this.frais}}</ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" style="font-size: 12px;" >Total</ion-label>
+            <ion-input type="number" formControlName="total" (keyup)="getEntry()">{{total}}</ion-input>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="8" offset="2">
+          <ion-button  shape="round" size="large" type="button" expand="block" (click)="change()" >Suivant</ion-button>
+        </ion-col>
+      </ion-row>
+
+
+  </div>
+
+  <div *ngIf="segmentModel === 'beneficiaire'">
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="floating" style="font-size: 12px;">Nom Complet</ion-label>
+          <ion-input type="family-name" formControlName="name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+<!--    <ion-row>-->
+<!--      <ion-col size="10" offset="1">-->
+<!--        <ion-item>-->
+<!--          <ion-label position="floating" style="font-size: 12px;">Prenom</ion-label>-->
+<!--          <ion-input type="name" formControlName="firstname"></ion-input>-->
+<!--        </ion-item>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="floating" style="font-size: 12px;">Téléphone</ion-label>
+          <ion-input type="text" formControlName="phone"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8" offset="2">
+        <ion-button shape="round" size="large" type="button" expand="block" style="margin-top: 100px" (click)="AlertDepot()" >Confirmer</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</form>
+</ion-content>

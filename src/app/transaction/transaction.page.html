@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid class="grille">
+      <ion-row>
+        <ion-col offset="1">
+          <div routerLink="/acceuil">
+            <ion-icon name="home-outline" style="color: #07AEEF" ></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col offset="1">
+          <div class="logo">
+            <ion-thumbnail>
+              <img src="/assets/logo.png">
+            </ion-thumbnail>
+          </div>
+        </ion-col>
+        <ion-col offset="2">
+          <div class="avatar" >
+            <ion-avatar><img src="/assets/body.jpeg" hidden="true"> </ion-avatar>
+          </div>
+        </ion-col>
+      </ion-row>
+      <div >
+<!--        <ion-segment value="emetteur" [(ngModel)]="segmentModel"  >-->
+<!--          <ion-segment-button value="emetteur" style="font-size: 8px; color: darkslateblue; display: inline-block">-->
+<!--            <ion-icon name="sync-outline" style="color: #07AEEF; margin-right: 10px; "></ion-icon>-->
+<!--            <ion-label>Mes Transactions</ion-label>-->
+<!--          </ion-segment-button>-->
+
+<!--          <ion-segment-button value="beneficiaire" style="font-size: 8px; color: darkslateblue;">-->
+<!--            <ion-icon name="sync-outline" style="color: #07AEEF; "></ion-icon>-->
+<!--            <ion-label>Toutes mes transactions</ion-label>-->
+<!--          </ion-segment-button>-->
+<!--        </ion-segment>-->
+        <ion-row>
+          <ion-col size="6"  >
+            <ion-item style="border-bottom: solid 2px #07AEEF ">
+              <ion-icon name="sync-outline"  style="color: #07AEEF; margin-right: 2px; font-size: 15px;"></ion-icon>
+              <ion-label style="font-size: 10px">Mes transactions</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" >
+            <ion-item style="border-bottom: solid 3px #07AEEF ">
+              <ion-icon name="sync-outline"  style="color: #07AEEF; margin-right: 2px; font-size: 15px"></ion-icon>
+              <ion-label style="font-size: 10px">Toutes les transactions</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
+
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid >
+    <ion-row >
+
+        <ion-col size="3">
+          <div>
+          <ion-item>
+            <ion-label style="font-size: 10px">User</ion-label>
+            <ion-select ok-text="Ok" cancel-text="Annuler" class="select-full-width">
+              <ion-select-option value="dos">DOS</ion-select-option>
+              <ion-select-option value="lunix">Linux</ion-select-option>
+
+            </ion-select>
+          </ion-item>
+          </div>
+        </ion-col>
+
+
+
+
+      <ion-col size="3">
+        <div >
+
+
+          <ion-item>
+            <ion-label style="font-size: 10px">Type</ion-label>
+            <ion-select ok-text="Ok" cancel-text="Annuler" class="select-full-width">
+              <ion-select-option value="dos">DOS</ion-select-option>
+              <ion-select-option value="lunix">Linux</ion-select-option>
+
+            </ion-select>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div >
+          <ion-item>
+            <ion-label style="font-size: 10px">Du</ion-label>
+            <ion-select ok-text="Okay" cancel-text="Nah" class="select-full-width">
+              <ion-select-option value="dos">DOS</ion-select-option>
+              <ion-select-option value="lunix">Linux</ion-select-option>
+              <ion-select-option value="mac7">Mac OS 7</ion-select-option>
+
+            </ion-select>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div >
+          <ion-item>
+            <ion-label style="font-size: 10px">Au</ion-label>
+            <ion-select ok-text="Ok" cancel-text="Annuler"class="select-full-width">
+              <ion-select-option value="dos">DOS</ion-select-option>
+              <ion-select-option value="lunix">Linux</ion-select-option>
+              <ion-select-option value="mac7">Mac OS 7</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <div class="row" *ngFor="let data of transactDeed">
+    <div class="col">{{data.dateOf}}</div>
+    <div class="col">{{data.type}}</div>
+    <div class="col">LK {{data.montant}}</div>
+    <div class="col">{{data.frais}}</div>
+
+  </div>
+  <ion-row>
+    <ion-col size="4" offset="4">
+      <ion-chip  outline style="border: solid 1px orangered">
+      <ion-chip  style="background-color: orangered; color: white" class="chips" >Total</ion-chip>
+        <ion-label>15000000</ion-label>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+</ion-content>
